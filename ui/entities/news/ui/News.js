@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { NewsItem } from "./NewsItem";
+import { isWeekend } from "../../../shared/isWeekend/isWeekend";
 
 const mockNews = [
   {
@@ -91,6 +92,9 @@ export function News({ navigation }) {
 
   return (
     <View style={styles.container}>
+      {isWeekend(new Date()) && <Text style={{'marginBottom': 20 ,'fontWeight': 900}}>
+        [Сегодня выходной день, поэтому вы видите старые новости. Новые появятся в понедельник.]
+      </Text>}
       <FlatList
         keyExtractor={(newsItem) => newsItem.id}
         data={news}
