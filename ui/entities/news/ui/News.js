@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
 export function News({ navigation }) {
   const [news, setNews] = useState([]);
   const [newsIsLoading, setNewsIsLoading] = useState(false);
+  const [newsIsFailed, setNewsIsFailed] = useState(false);
 
   useEffect(() => {
     setNewsIsLoading(true);
@@ -66,6 +67,9 @@ export function News({ navigation }) {
     getMockNews().then((fetchingNews) => {
       setNews(fetchingNews);
       setNewsIsLoading(false);
+    }).catch(() => {
+      setNewsIsLoading(false)
+      setNewsIsFailed(true)
     });
   }, []);
 
@@ -73,6 +77,14 @@ export function News({ navigation }) {
     return (
       <View style={styles.container}>
         <Text>Loading..</Text>
+      </View>
+    );
+  }
+
+  if (newsIsFailed) {
+    return (
+      <View style={styles.container}>
+        <Text>Ошибка. Попробуйте перезагрузить страницу.</Text>
       </View>
     );
   }
