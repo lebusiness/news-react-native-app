@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Platform } from "react-native";
 
 export function AboutPage() {
   return (
@@ -27,6 +27,14 @@ export function AboutPage() {
       <Text>
         Благодарим вас за то, что выбрали наше приложение для получения
         новостей, и обещаем продолжать радовать вас свежими материалами!
+      </Text>
+
+      <Text>
+        {`Тк вы пользователь ${
+          Platform.OS === "ios" ? "IOS" : "Android"
+        } скачивайте нас на ${
+          Platform.OS === "ios" ? "AppStore" : "GooglePlay"
+        }.`}
       </Text>
 
       <View style={{ flex: 1, alignItems: "center", marginTop: 20 }}>

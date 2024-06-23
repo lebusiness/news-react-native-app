@@ -27,12 +27,16 @@ export function NewsFullItem({ route }) {
 
   const layout = useWindowDimensions();
 
+  // Состояние переключателя
   const [index, setIndex] = useState(0);
+
+  // Состояние количества табов
   const [routes] = useState([
     { key: "news", title: "Читать" },
     { key: "comments", title: "Комментарии" },
   ]);
 
+  // Словарь таб -> Контект
   const renderScene = SceneMap({
     news: () => (
       <View style={styles.container}>
@@ -58,6 +62,7 @@ export function NewsFullItem({ route }) {
     ),
   });
 
+  // Вывод таба
   return (
     <TabView
       navigationState={{ index, routes }}
